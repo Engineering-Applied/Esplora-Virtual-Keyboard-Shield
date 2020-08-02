@@ -1,0 +1,94 @@
+if (touch.touched()) {
+    delay(50);                //added delay for verifying human touch
+    if (touch.touched()) {
+    TS_Point p = touch.getPoint();                          
+    Serial.println("You have been touched!");
+    Serial.print("The X coordinate is \t"), Serial.println(p.x);
+    Serial.print("The Y coordinate is \t"), Serial.println(p.y);
+    if ((p.x > 40) && (p.x < 67)) {
+      sendTopChar(p.y) ;
+    }
+    if ((p.x > 102) && (p.x < 125)) {
+      sendMidChar(p.y) ;
+    }
+    if ((p.x > 155) && (p.x < 190)) {
+      sendBotChar(p.y) ;
+    } 
+    if ((p.x > 220) && (p.x < 240)) {
+      sendSpaceChar(p.y) ;
+    } 
+    } 
+ 
+ }
+
+void sendTopChar(int y){
+  if ((y > 305) && (y < 322))
+    Keyboard.write('q'); 
+  if ((y > 248) && (y < 266))
+    Keyboard.write('w'); 
+  if ((y > 228) && (y < 242))
+    Keyboard.write('e'); 
+  if ((y > 198) && (y < 215))
+    Keyboard.write('r'); 
+  if ((y > 168) && (y < 180))
+    Keyboard.write('t'); 
+  if ((y > 140) && (y < 155))
+    Keyboard.write('y'); 
+  if ((y > 100) && (y < 115))
+    Keyboard.write('u'); 
+  if ((y > 74) && (y < 92))
+    Keyboard.write('i'); 
+  if ((y > 55) && (y < 65))
+    Keyboard.write('o');
+  if ((y > 0) && (y < 15))
+    Keyboard.write('p');
+}
+
+void sendMidChar(int y){
+  if ((y > 288) && (y < 300))
+    Keyboard.write('a'); 
+  if ((y > 248) && (y < 260))
+    Keyboard.write('s'); 
+  if ((y > 220) && (y < 230))
+    Keyboard.write('d'); 
+  if ((y > 188) && (y < 202))
+    Keyboard.write('f'); 
+  if ((y > 155) && (y < 168))
+    Keyboard.write('g'); 
+  if ((y > 125) && (y < 138))
+    Keyboard.write('h'); 
+  if ((y > 95) && (y < 105))
+    Keyboard.write('j'); 
+  if ((y > 58) && (y < 68))
+    Keyboard.write('k'); 
+  if ((y > 24) && (y < 36))
+    Keyboard.write('l');
+}
+
+void sendBotChar(int y){
+  if ((y > 300) && (y < 312))
+    Keyboard.write(193);      //keyboard Caps-Lock defined by Arduino special characters
+  if ((y > 250) && (y < 262))
+    Keyboard.write('z'); 
+  if ((y > 217) && (y < 227))
+    Keyboard.write('x'); 
+  if ((y > 180) && (y < 193))
+    Keyboard.write('c'); 
+  if ((y > 150) && (y < 165))
+    Keyboard.write('v'); 
+  if ((y > 125) && (y < 135))
+    Keyboard.write('b'); 
+  if ((y > 90) && (y < 105))
+    Keyboard.write('n'); 
+  if ((y > 58) && (y < 70))
+    Keyboard.write('m'); 
+  if ((y > 0) && (y < 20))
+    Keyboard.write(178);    //keyboard Backspace defined by Arduino special characters
+}
+
+void sendSpaceChar(int y){
+  if ((y > 70) && (y < 240))
+    Keyboard.write(32);       //keyboard SPACE     defined by Ascii characters 
+  if ((y > 5) && (y < 35))
+    Keyboard.write(176);       //keyboard RETURN    defined by Arduino special characters https://www.arduino.cc/reference/en/language/functions/usb/keyboard/keyboardmodifiers/
+}
